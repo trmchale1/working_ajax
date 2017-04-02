@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
-<h1>Hi</h1>
 <style>
 .backround {
   fill: none;
@@ -123,12 +122,15 @@ function state(stateName,
 
 
 	function tooltipHtml(name, states){ 
-console.log(states);    	
+	console.log(states);    
+	console.log(name);
 	return "<h4>"+name+"</h4><table>"+
-	      "<tr><td>Not Insured 2010</td><td>"+(states.Uninsured_Rate_2010)+"</td></tr>"+
-	      "<tr><td>Not Insured 2015</td><td>"+(states.Uninsured_Rate_2015)+"</td></tr>"+
-	      "<tr><td>Change from 2010 to 2015</td><td>"+(states.json[i].
-                                Uninsured_Rate_Change_2010_2015)+"</td></tr>"+
+	      "<tr><td>Not Insured 2010</td><td>"+
+	      (states.unInsured_rate_2010)+"</td></tr>"+
+	      "<tr><td>Not Insured 2015</td><td>"+
+	      (states.unInsured_rate_2015)+"</td></tr>"+
+	      "<tr><td>Change from 2010 to 2015</td><td>"+(states.
+              delta_rate_2010_2015)+"</td></tr>"+
 	      "</table>";
   }
 
@@ -199,8 +201,12 @@ console.log(states);
     function mouseOver(d){
 	var index;
 	for(var i = 0; i < data.length; i++){
-		if(data[i] == d.n){
+
+		console.log(d.n);
+		
+		if(data[i].stateName == d.n){
 			index =  data[i];	
+			//console.log(index);
 	}}      
 d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
       d3.select("#tooltip").html(toolTip(d.n,index))
@@ -229,7 +235,6 @@ d3.select("#tooltip").transition().duration(200).style("opacity", .9);
 	uStates.draw("#statesvg", states, tooltipHtml);
   
 	d3.select(self.frameElement).style("height", "600px");
-//console.log(states);
        });
             
 
