@@ -81,7 +81,6 @@ app.get('/searching', function(req,res){
 		  if(err){
                 	return console.log(err);
 	        	}
-		json = JSON.stringify(data);
 		res.send(data);
 	});
 });
